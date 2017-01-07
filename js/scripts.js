@@ -40,18 +40,16 @@ function main() {
     function play(quiz) {
         questionCounter = 0;
         score = 0;
-        console.log(questionCounter);
         update($score, score);
         hide($start);
         show($form);
         chooseQuestion();
-        $form.addEventListener("submit", function(event) {
-            event.preventDefault();
-            console.log(questionCounter);
-            check($form[0].value);
-        }, false);
+        $form.addEventListener("submit", onQuestionSubmit, false);
     }
-
+    function onQuestionSubmit(event) {
+        event.preventDefault();
+        check($form[0].value);
+    }
     function chooseQuestion() {
         var question = quiz.questions[questionCounter].question;
         ask(question);
@@ -83,6 +81,7 @@ function main() {
         show($start);
         hide($form);
         update($question, "Game Over, you scored " + score + " points.")
+        $form.removeEventListener("submit", onQuestionSubmit, false);
     }
 
     function update(element, content, additionalClass) {
