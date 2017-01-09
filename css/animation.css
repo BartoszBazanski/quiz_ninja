@@ -1,0 +1,9 @@
+#squere {
+    margin: 100px;
+    width: 100px;
+    height: 100px;
+    background: #cc0;
+    animation: spin 20s linear infinite;
+}
+
+@keyframes spin {from {transform: rotate(360deg);} to {transform: rotate(0deg)}};

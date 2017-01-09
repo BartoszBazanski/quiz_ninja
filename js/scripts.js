@@ -8,8 +8,11 @@ function main() {
     var $feedback = document.getElementById("feedback");
     var $start = document.getElementById("startButton");
     var $form = document.getElementById("answer");
+    var $timer = document.getElementById("timer");
     var questionCounter;
     var score;
+    var time;
+    var interval;
 
     hide($form);
 
@@ -38,6 +41,9 @@ function main() {
     }
 
     function play(quiz) {
+        time = 20;
+        update($timer, time);
+        interval = window.setInterval(countDown, 1000);
         questionCounter = 0;
         score = 0;
         update($score, score);
@@ -82,6 +88,7 @@ function main() {
         hide($form);
         update($question, "Game Over, you scored " + score + " points.")
         $form.removeEventListener("submit", onQuestionSubmit, false);
+        window.clearInterval(interval);
     }
 
     function update(element, content, additionalClass) {
@@ -90,6 +97,14 @@ function main() {
         element.appendChild(p);
         if(additionalClass) {
             p.className = additionalClass;
+        }
+    }
+
+    function countDown() {
+        time--;
+        update($timer, time);
+        if(time <= 0) {
+            gameOver();
         }
     }
 };

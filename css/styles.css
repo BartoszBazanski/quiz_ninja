@@ -1,3 +1,7 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 body {
     width: 400px;
     margin: 0 auto;
@@ -49,11 +53,15 @@ label.break, button {
 }
 input[type="text"], input[type="password"] {
     padding: 5px 30px 5px 5px;
+    width: 300px;
 }
 .error {
     background: #f99;
     border: #900 1px solid;
 }
 form {
+    text-align: center;
+}
+#timer {
     text-align: center;
 }
