@@ -1,7 +1,5 @@
-function main() {
+(function() {
     'use strict';
-
-    // alert("Welcome to Quiz Ninja!");
 
     var $question = document.getElementById("question");
     var $score = document.getElementById("score");
@@ -31,7 +29,6 @@ function main() {
         ]
     }
 
-
     function hide(element) {
         element.style.display = "none";
     }
@@ -57,17 +54,20 @@ function main() {
         check($form[0].value);
     }
     function chooseQuestion() {
+        console.log("chooseQuestion() invoked");
         var question = quiz.questions[questionCounter].question;
         ask(question);
     }
 
     function ask(question) {
+        console.log("ask() invoked");
         update($question, quiz.question + question + "?");
         $form[0].value = "";
         $form[0].focus();
     }
 
     function check(answer) {
+        console.log("check() invoked");
         if(answer === quiz.questions[questionCounter].answer) {
             update($feedback, "Correct!", "right");
             score ++;
@@ -84,6 +84,7 @@ function main() {
     }
 
     function gameOver() {
+        console.log("gameOver() invoked");
         show($start);
         hide($form);
         update($question, "Game Over, you scored " + score + " points.")
@@ -107,6 +108,4 @@ function main() {
             gameOver();
         }
     }
-};
-
-document.addEventListener('DOMContentLoaded', main);
+})();
